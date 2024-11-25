@@ -1,0 +1,28 @@
+/* src/index.css */
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.form-container {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkblue;
+}

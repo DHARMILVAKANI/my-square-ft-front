@@ -1,0 +1,33 @@
+{
+  "name": "react-vite-app",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Ankit",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format-check": "prettier --check .",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
+    "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.7.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.53.2",
+    "react-redux": "^8.0.0",
+    "react-router-dom": "^7.0.1",
+    "react-toastify": "^10.0.6",
+    "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.3",
+    "eslint": "^9.15.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.37.2",
+    "prettier": "^3.3.3",
+    "vite": "^4.5.5"
+  }
+}
