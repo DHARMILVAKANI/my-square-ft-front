@@ -6,6 +6,10 @@ import PublicRoute from './PublicRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the required CSS
 import { Layout } from '../components';
+import About from '../pages/About/About';
+import Properties from '../pages/Properties/Properties';
+import Blog from '../pages/Blog/Blog';
+import Contact from '../pages/Contact/Contact';
 
 const AppRoutes = () => {
   return (
@@ -35,6 +39,46 @@ const AppRoutes = () => {
           element={
             <PublicRoute>
               <Signup />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <PublicRoute>
+              <Layout>
+                <About />
+              </Layout>
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/properties"
+          element={
+            <PublicRoute>
+              <Layout>
+                <Properties />
+              </Layout>
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/blog"
+          element={
+            <PublicRoute>
+              <Layout>
+                <Blog />
+              </Layout>
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <PublicRoute>
+              <Layout>
+                <Contact />
+              </Layout>
             </PublicRoute>
           }
         />
