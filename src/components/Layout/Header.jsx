@@ -1,7 +1,7 @@
 import React from 'react';
 import './header.scss';
 import { NavLink } from 'react-router-dom';
-const Header = () => {
+const Header = ({ toggleNavbar, isNavbarExpanded }) => {
   return (
     <header className="header shadow-sm" id="header">
       <div className="container">
@@ -15,7 +15,8 @@ const Header = () => {
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbar-content"
-            aria-expanded="false">
+            aria-expanded={isNavbarExpanded ? 'true' : 'false'}
+            onClick={toggleNavbar}>
             <i className="las la-bars"></i>
           </button>
           <div className="navbar-collapse order-4 order-lg-3 collapse" id="navbar-content">

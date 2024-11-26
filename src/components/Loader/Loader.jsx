@@ -3,8 +3,8 @@ import React from 'react';
 const Loader = () => {
   return (
     <div>
-      <div class="preloader">
-        <div class="loader-p"></div>
+      <div className="preloader">
+        <div className="loader-p"></div>
       </div>
     </div>
   );
