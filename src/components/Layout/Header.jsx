@@ -3,7 +3,7 @@ import './header.scss';
 import { NavLink } from 'react-router-dom';
 const Header = ({ toggleNavbar, isNavbarExpanded }) => {
   return (
-    <header className="header shadow-sm" id="header">
+    <header className="header shadow-sm bg-white" id="header">
       <div className="container">
         <nav className="navbar navbar-expand-lg">
           <a className="navbar-brand logo order-1" href="https://www.mysquarefeet.net">

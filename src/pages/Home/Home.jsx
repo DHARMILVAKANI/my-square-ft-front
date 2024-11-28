@@ -3,14 +3,42 @@ import './Home.scss';
 import { NavLink } from 'react-router-dom';
 import patternImage from '../../assets/thumbs/pattern-3.png';
 import patternImage2 from '../../assets/thumbs/pattern-bottom-left.png';
+import patternImage3 from '../../assets/thumbs/pattern-top-right.png';
+import CityCard from '../../components/CitiesCards/CitiesCards';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import PropertyCard from '../../components/PropertiesCards/PropertiesCards';
+import WhyInvestCard from '../../components/WhyInvestCards/WhyInvestCards';
+import BlogCard from '../../components/BlogCards/BlogCards';
+import TestimonialCarousel from '../../components/Testinomial/Testinomial';
+import { blogs, cities, investCardsData, properties } from '../../constants/static.data';
 
 const Home = () => {
+  const settings = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
+    prevArrow: <button className="slick-prev">◁</button>, // Left Arrow
+    nextArrow: <button className="slick-next">▷</button>, // Right Arrow
+    responsive: [
+      {
+        breakpoint: 768, // For smaller screens
+        settings: {
+          arrows: true
+        }
+      }
+    ]
+  };
+
   return (
     <>
       <section
-        className="banner bg-pattern3"
+        className="banner bg-pattern3 shadow-sm"
         style={{
-          background: `url(${patternImage}) repeat-x center center, whitesmoke`
+          background: `url(${patternImage}) repeat-x center center, #F5F5F5`
         }}>
         <div className="container">
           <div className="row align-items-center gy-4">
@@ -53,66 +81,25 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="why-invest py-120">
+      <section className="why-invest py-120 shadow-sm">
         <div className="container ">
           <div className="section-heading">
             <p className="section-heading__subtitle">Built to help smart investors invest smarter</p>
             <h2 className="section-heading__title">Why Invest in Real Estate?</h2>
           </div>
           <div className="row gy-4 justify-content-center">
-            <div className="col-xsm-6 col-sm-6 col-md-4 col-lg-3">
-              <div className="why-invest-card">
-                <span className="why-invest-card__icon">
-                  <i className="las la-hand-holding-usd"></i>{' '}
-                </span>
-                <div className="why-invest-card__content">
-                  <h6 className="why-invest-card__title">Secure Investment</h6>
-                  <p className="why-invest-card__desc">Rest assured with our secure investment solutions, your financial future is protected</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-xsm-6 col-sm-6 col-md-4 col-lg-3">
-              <div className="why-invest-card">
-                <span className="why-invest-card__icon">
-                  <i className="lab la-gg-circle"></i>{' '}
-                </span>
-                <div className="why-invest-card__content">
-                  <h6 className="why-invest-card__title">Transparent Platform</h6>
-                  <p className="why-invest-card__desc">Experience the confidence of a transparent platform for your peace of mind</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-xsm-6 col-sm-6 col-md-4 col-lg-3">
-              <div className="why-invest-card">
-                <span className="why-invest-card__icon">
-                  <i className="las la-cloud-meatball"></i>{' '}
-                </span>
-                <div className="why-invest-card__content">
-                  <h6 className="why-invest-card__title">Passive Income</h6>
-                  <p className="why-invest-card__desc">Explore opportunities for generating passive income streams</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-xsm-6 col-sm-6 col-md-4 col-lg-3">
-              <div className="why-invest-card">
-                <span className="why-invest-card__icon">
-                  <i className="las la-headset"></i>{' '}
-                </span>
-                <div className="why-invest-card__content">
-                  <h6 className="why-invest-card__title">Support</h6>
-                  <p className="why-invest-card__desc">Count on our dedicated support team for prompt and reliable assistance</p>
-                </div>
-              </div>
-            </div>
+            {investCardsData.map((card, index) => (
+              <WhyInvestCard key={index} icon={card.icon} title={card.title} description={card.description} />
+            ))}
           </div>
         </div>
       </section>
       <section
         className="latest-property py-120 bg-pattern-bottom-right"
         style={{
-          background: `linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0)) 0% 0%, url(${patternImage2}) no-repeat left bottom / 600px 600px, whitesmoke`
+          background: `linear-gradient(to top, rgb(245, 245, 245), rgba(255, 255, 255, 0)) 0% 0%, url(${patternImage2}) no-repeat left bottom / 600px 600px, #F5F5F5`
         }}>
-        <div className="container ">
+        <div className="container">
           <div className="section-heading style-left">
             <p className="section-heading__subtitle">Latest properties</p>
             <div className="section-heading__wrapper">
@@ -125,57 +112,138 @@ const Home = () => {
           </div>
           <div className="row gy-4 g-sm-3 g-md-4 justify-content-center">
             <div className="col-sm-6 col-lg-4">
-              <article className="card property--card border-0 shadow-sm">
-                <a className="card-img-top " href="https://www.mysquarefeet.net/property/dwarka-indore">
-                  <img src="https://www.mysquarefeet.net/assets/images/property/thumb/6725f8c66fffd1730541766.png" alt="property-image" />
+              {properties.map((property, index) => (
+                <PropertyCard key={index} {...property} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        className="about-us pb-120 pt-60"
+        style={{
+          background: `linear-gradient(to top, rgb(245, 245, 245), rgba(255, 255, 255, 0)) 0% 0%, url(${patternImage3}) no-repeat right top / 600px 600px, #F5F5F5`
+        }}>
+        <div className="container ">
+          <div className="row align-items-center gy-4">
+            <div className="col-md-6">
+              <div className="about-us__content">
+                <div className="section-heading mb-less style-left">
+                  <p className="section-heading__subtitle">About My Square Feet</p>
+                  <h2 className="section-heading__title">About Our Real Estate</h2>
+                </div>
+                <h6 className="about-us__subheading">Finding great properties for investment</h6>
+                <div className="about-us__desc">
+                  <p>
+                    My Square Feet is a unique real estate-based investment platform that allows small and micro investors to easily invest in high return properties
+                    secured by blockchain technology. Take your first step towards financial freedom by joining My Square Feet today. My Square Feet provides high return
+                    on investment opportunities in the real estate market. You don't have to be an expert to invest with us. Our platform is designed to make investing
+                    easy and accessible for everyone.
+                  </p>
+                </div>
+                <a className="btn btn--base" href="about" role="button">
+                  Discover More
                 </a>
-                <div className="card-body px-2 py-3 p-md-3 p-xl-4">
-                  <div className="card-body-top">
-                    <h5 className="card-title mb-2">
-                      <NavLink to="#" className="text-decoration-none">
-                        New Dwarka Heights Indore
-                      </NavLink>
-                    </h5>
-                    <ul className="card-meta card-meta--one" style={{ paddingLeft: 0 }}>
-                      <li className="card-meta__item card-meta__item__location">
-                        <i className="las la-map-marker-alt"></i>
-                        <span className="text" style={{ color: 'rgb(139, 137, 137)', fontWeight: 600 }}>
-                          Indore
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="card-body-middle">
-                    <div className="card-progress mb-4">
-                      <div className="card-progress__bar">
-                        <div className="card-progress__thumb"></div>
-                      </div>
-                      <span className="card-progress__label fs-12">0 Investors | ₹0.00 INR (0%)</span>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="d-flex justify-content-center justify-content-lg-end">
+                <div className="about-us__wrapper">
+                  <img className="about-us__thumb" src="https://www.mysquarefeet.net/assets/images/frontend/about/663f5dddc8a4e1715428829.jpg" alt="about-image" />
+                  <div className="floating-card floating-card--one">
+                    <div className="floating-card__content">
+                      <h3 className="floating-card__title" data-s-break="">
+                        16<span>%</span>
+                      </h3>
+                      <p className="floating-card__text">Average Profit Upto</p>
                     </div>
-                    <ul className="card-meta card-meta--two" style={{ paddingLeft: 0 }}>
-                      <li className="card-meta__item">
-                        <div className="text">2 - 6%</div>
-                        <span className="subtext">Profit</span>
-                      </li>
-                      <li className="card-meta__item">
-                        <div className="text">Onetime</div>
-                        <span className="subtext">Profit Schedule</span>
-                      </li>
-                      <li className="card-meta__item">
-                        <div className="text">Yes</div>
-                        <span className="subtext">Capital Back</span>
-                      </li>
-                    </ul>
                   </div>
-                  <div className="card-body-bottom mb-4">
-                    <a className="btn orange_btn" href="https://www.mysquarefeet.net/property/dwarka-indore" role="button">
-                      Details
-                    </a>
-                    <span className="card-price">₹100.00 INR</span>
+                  <div className="floating-card floating-card--two">
+                    <div className="floating-card__content">
+                      <h3 className="floating-card__title" data-s-break="">
+                        1K<span>+</span>
+                      </h3>
+                      <p className="floating-card__text">Investors</p>
+                    </div>
+                    <img className="floating-card__thumb" src="https://www.mysquarefeet.net/assets/images/frontend/about/663f5ddddcfe81715428829.png" alt="about-image" />
                   </div>
                 </div>
-              </article>
+              </div>
             </div>
+          </div>
+        </div>
+      </section>
+      <section className="featured-property py-120">
+        <div className="container ">
+          <div className="section-heading style-left">
+            <p className="section-heading__subtitle">Cities</p>
+            <div className="section-heading__wrapper">
+              <h2 className="section-heading__title">Explore By Cities</h2>
+              <div className="featured-property__arrows">
+                <button type="button" className="slick-prev slick-arrow">
+                  <i className="las la-angle-left"></i>
+                </button>
+                <button type="button" className="slick-next slick-arrow">
+                  <i className="las la-angle-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="d-flex gap-5">
+            {cities.map((city, index) => (
+              <CityCard key={index} imageUrl={city.imageUrl} cityName={city.cityName} propertiesCount={city.propertiesCount} linkUrl={city.linkUrl} />
+            ))}
+          </div>
+        </div>
+      </section>
+      <section
+        className="all-property py-120 bg-pattern"
+        style={{
+          background: `linear-gradient(to top, rgb(245, 245, 245), rgba(255, 255, 255, 0)) 0% 0%, url(${patternImage2}) no-repeat left bottom / 600px 600px, #F5F5F5`
+        }}>
+        <div className="container ">
+          <div className="section-heading style-left">
+            <p className="section-heading__subtitle">Featured properties</p>
+            <div className="section-heading__wrapper">
+              <h2 className="section-heading__title">All Properties Spotlight</h2>
+              <a className="section-heading__link" href="https://www.mysquarefeet.net/properties">
+                <span>Explore</span>
+                <i className="las la-long-arrow-alt-right"></i>
+              </a>
+            </div>
+          </div>
+          <div className="all-property__cards"></div>
+        </div>
+      </section>
+      {/* Testinomial remaining*/}
+
+      <section className="testimonial py-120 ">
+        <div className="container">
+          <div className="row gy-4 justify-content-lg-between align-items-center">
+            <TestimonialCarousel />
+          </div>
+        </div>
+      </section>
+
+      {/* Blog */}
+      <section className="latest-blogs py-120 bg-pattern" style={{ background: '#f5f5f5' }}>
+        <div className="container">
+          <div className="section-heading style-left">
+            <p className="section-heading__subtitle">Our Blogs</p>
+            <div className="section-heading__wrapper">
+              <h2 className="section-heading__title">Latest News &amp; Articles</h2>
+              <a className="section-heading__link" href="https://www.mysquarefeet.net/blog">
+                <span>Explore</span>
+                <i className="las la-long-arrow-alt-right"></i>
+              </a>
+            </div>
+          </div>
+          <div className="d-flex gap-4 blog__card_wrapper" style={{ width: '96%' }}>
+            {blogs.map((blog, index) => (
+              <div className="col-sm-6 col-lg-4">
+                <BlogCard key={index} image={blog.image} date={blog.date} month={blog.month} title={blog.title} description={blog.description} link={blog.link} />
+              </div>
+            ))}
           </div>
         </div>
       </section>
