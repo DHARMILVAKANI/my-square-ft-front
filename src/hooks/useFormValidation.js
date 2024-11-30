@@ -8,7 +8,8 @@ export const useFormValidation = schema => {
     handleSubmit,
     formState: { errors }
   } = useForm({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
+    mode: 'onTouched'
   });
 
   return { register, handleSubmit, errors };

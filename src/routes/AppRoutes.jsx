@@ -35,7 +35,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/signup"
+          path="/register"
           element={
             <PublicRoute>
               <Signup />

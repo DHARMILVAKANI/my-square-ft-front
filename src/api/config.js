@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import LocalStorageService from '../services/localStorageService';
-// import { useHistory } from "react-router-dom"; // React Router for redirection
 
 // Create an Axios instance
 const api = axios.create({
-  baseURL: 'https://your-api-url.com', // Replace with your base API URL
+  baseURL: 'https://msfapp.icreateinnovations.com/api/v1',
   headers: {
     'Content-Type': 'application/json'
   }
@@ -29,17 +28,13 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   response => response,
   error => {
-    // If there's a response error
     if (error.response) {
-      // Handle known errors (e.g., 401, 404, etc.)
       const status = error.response.status;
       const message = error.response.data.message || error.message;
 
       if (status === 401) {
-        // Unauthorized error: Redirect to login page
         toast.error('Session expired. Please log in again.');
-        // Add logic to redirect user to login
-        window.location.href = '/login'; // Or use useHistory for redirection
+        window.location.href = '/login';
       } else if (status === 403) {
         toast.error('You do not have permission to access this resource.');
       } else if (status === 404) {
@@ -50,10 +45,8 @@ api.interceptors.response.use(
         toast.error(message || 'An unknown error occurred.');
       }
     } else if (error.request) {
-      // No response received
       toast.error('Network error. Please check your connection.');
     } else {
-      // Error in setting up request
       toast.error(`Error: ${error.message}`);
     }
 
